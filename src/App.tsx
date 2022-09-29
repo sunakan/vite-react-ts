@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import './App.css'
 
-const empty = "空";
-const batsu = "X";
-const maru  = "O";
+//const Symbol = {
+//  EMPTY: "空",
+//  BATSU: "X",
+//  MARU: "O",
+//} as const;
+//type SymbolKeys = keyof typeof Symbol; // type SymbolKeys = "EMTPY" | "BATSU" | "MARU"
+//type Symbol = typeof Symbol[SymbolKeys];
+
+//const empty = "空";
+//const batsu = "X";
+//const maru  = "O";
+type Symbol = "空" | "X" | "O"
 
 /**
  * 勝者判定
  *
  * "O" or "X" が1直線になっているか比較
  */
-const calculateWinner = (squares: string[]) => {
+const calculateWinner = (squares: Symbol[]) => {
   const lines: number[][] = [
     [0, 1, 2],
     [3, 4, 5],
@@ -25,7 +34,7 @@ const calculateWinner = (squares: string[]) => {
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c]: number[] = lines[i];
-    if (squares[a] !== empty && squares[a] === squares[b] && squares[a] === squares[c]) {
+    if (squares[a] !== "空" && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a]; // 勝った方
     }
   }
